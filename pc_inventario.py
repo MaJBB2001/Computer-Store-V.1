@@ -47,3 +47,11 @@ class InventarioElectronico(Singleton):
 
     def LimpiarPantalla(self):
         os.system('cls' if os.name == 'nt' else 'clear')
+
+def FuncionDecoradora(funcion):
+    def LineasAdoros(*args, **kwargs):
+        print("•" * 33)
+        print(">>>>>>>>> COMPUTER STORE <<<<<<<<")
+        print("•" * 33)
+        funcion(*args, **kwargs)  # Llamada a la función original con los mismos argumentos
+    return LineasAdoros
