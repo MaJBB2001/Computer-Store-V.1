@@ -1,4 +1,6 @@
+from pc_inventario import InventarioElectronico
 
+inventario = InventarioElectronico()  # Crear una instancia del inventario
 def MostrarMenu():
 
     print("*" * 35)
@@ -23,9 +25,11 @@ def main():
         opcion = input("\nSeleccione una opción: ")
 
         if opcion == "1":
-            print("-" * 30)
-            print("*** Inciando Inventario ***")
-            print("-" * 30)
+            inventario.LimpiarPantalla()
+            inventario.MostrarInventario()
+            input("\nPresione Enter para regresar al Menú...")
+            inventario.LimpiarPantalla()
+
         elif opcion == "2":
             print("-" * 30)
             print("*** Inciando Modificar ***")
