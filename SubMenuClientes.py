@@ -1,4 +1,13 @@
-def MenuClientes(self):
+from pc_inventario import InventarioElectronico
+from clientes import listaClientes
+
+class SubMenuClientes:
+    def __init__(self):
+        self.clientes = listaClientes()
+
+    def MenuClientes(self):
+        inventario = InventarioElectronico()  # Crear una instancia de la clase InventarioElectronico
+
         while True: # SubMenuClientes se ejecuta hasta la opción salir
             print("********************")
             print("* SubMenu Clientes *")
@@ -12,7 +21,9 @@ def MenuClientes(self):
             opcion = int(input("Seleccione una opción: "))
 
             if opcion == 1:
-                while True:
+                while True:  # Loop para agregar clientes hasta que el usuario decida salir
+                    inventario.LimpiarPantalla()
+                    self.clientes.AgregarCliente()
                     while True:
                         continuar = input("\n¿Desea continuar agregando clientes? (s/n): ").lower()
                         if continuar == 's' or continuar == 'n':
@@ -27,9 +38,18 @@ def MenuClientes(self):
                         break
 
             elif opcion == 2:
+                inventario.LimpiarPantalla()
+                self.clientes.MostrarClientes()
+                print(" ")
+                input("\nPresiona ¨s¨ para salir al Sub Menú: ")
+
+            elif opcion == 3:
                 while True:
+                    inventario.LimpiarPantalla()
+                    self.clientes.ModificarCliente()
+
                     while True:
-                        continuar = input("\n¿Desea continuar agregando clientes? (s/n): ").lower()
+                        continuar = input("\n¿Desea continuar modificando clientes? (s/n): ").lower()
                         if continuar == 's' or continuar == 'n':
                             break
                         else:
@@ -41,24 +61,13 @@ def MenuClientes(self):
                         # Si el usuario elige no continuar ('n'), se sale del bucle while.
                         break
 
-            elif opcion == 3:
-                while True:
-                    while True:
-                        continuar = input("\n¿Desea continuar agregando clientes? (s/n): ").lower()
-                        if continuar == 's' or continuar == 'n':
-                            break
-                        else:
-                            print("Por favor, ingresa una opción válida (s/n).")
-                    if continuar == 's':
-                        # Si el usuario elige continuar ('s'), el bucle continúa y se agrega otro artículo.
-                        continue
-                    elif continuar == 'n':
-                        # Si el usuario elige no continuar ('n'), se sale del bucle while.
-                        break
             elif opcion == 4:
                 while True:
+                    inventario.LimpiarPantalla()
+                    self.clientes.EliminarCliente()
+
                     while True:
-                        continuar = input("\n¿Desea continuar agregando clientes? (s/n): ").lower()
+                        continuar = input("\n¿Desea continuar eliminando clientes? (s/n): ").lower()
                         if continuar == 's' or continuar == 'n':
                             break
                         else:
@@ -72,8 +81,10 @@ def MenuClientes(self):
 
             elif opcion == 5:
                 break
+            inventario.LimpiarPantalla()
 
-# En el Main
+
 if __name__ == "__main__":
     while True:
-
+        sub_menu_clientes = SubMenuClientes()
+        sub_menu_clientes.MenuClientes()
